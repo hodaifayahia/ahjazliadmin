@@ -40,15 +40,19 @@ export async function proxy(request: NextRequest) {
     // Extract locale from pathname
     const locale = pathname.split('/')[1];
     const isValidLocale = ['en', 'fr', 'ar'].includes(locale);
+    const effectiveLocale = isValidLocale ? locale : 'en';
     const pathWithoutLocale = isValidLocale ? pathname.slice(locale.length + 1) : pathname;
 
     // Public routes
     const publicRoutes = ['/login', '/auth/callback', '/auth'];
-    const isPublicRoute = publicRoutes.some(route => pathWithoutLocale.startsWith(route)) || pathWithoutLocale === '';
+    const isPublicRoute =
+        publicRoutes.some(route => pathWithoutLocale.startsWith(route)) ||
+        pathWithoutLocale === '' ||
+        pathWithoutLocale === '/';
 
     // If not logged in and trying to access protected route
     if (!user && !isPublicRoute) {
-        const loginUrl = new URL(`/${locale}/login`, request.url);
+        const loginUrl = new URL(`/${effectiveLocale}/login`, request.url);
         return NextResponse.redirect(loginUrl);
     }
 
@@ -62,14 +66,14 @@ export async function proxy(request: NextRequest) {
 
         // If not admin, show access denied (you can redirect to main app if you want)
         if (!profile || profile.role !== 'admin') {
-            const deniedUrl = new URL(`/${locale}/access-denied`, request.url);
+            const deniedUrl = new URL(`/${effectiveLocale}/access-denied`, request.url);
             return NextResponse.redirect(deniedUrl);
         }
     }
 
     // If logged in and trying to access login page
     if (user && pathWithoutLocale === '/login') {
-        const dashboardUrl = new URL(`/${locale}/dashboard`, request.url);
+        const dashboardUrl = new URL(`/${effectiveLocale}/dashboard`, request.url);
         return NextResponse.redirect(dashboardUrl);
     }
 
