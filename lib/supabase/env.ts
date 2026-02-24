@@ -1,8 +1,28 @@
-const getFirstEnvValue = (...keys: string[]): string | undefined => {
-    for (const key of keys) {
-        const value = process.env[key]?.trim();
-        if (value) {
-            return value;
+const normalizeEnvValue = (value?: string) => {
+    if (!value) {
+        return undefined;
+    }
+
+    const trimmed = value.trim();
+    if (!trimmed) {
+        return undefined;
+    }
+
+    if (
+        (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+        (trimmed.startsWith("'") && trimmed.endsWith("'"))
+    ) {
+        return trimmed.slice(1, -1).trim() || undefined;
+    }
+
+    return trimmed;
+};
+
+const firstDefined = (...values: Array<string | undefined>) => {
+    for (const value of values) {
+        const normalized = normalizeEnvValue(value);
+        if (normalized) {
+            return normalized;
         }
     }
 
@@ -10,17 +30,17 @@ const getFirstEnvValue = (...keys: string[]): string | undefined => {
 };
 
 export const getSupabaseEnv = () => {
-    const url = getFirstEnvValue(
-        'NEXT_PUBLIC_SUPABASE_URL',
-        'SUPABASE_URL',
-        'NEXT_PUBLIC_SUPABASE_DATABASE_URL',
-        'SUPABASE_DATABASE_URL'
+    const url = firstDefined(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.NEXT_PUBLIC_SUPABASE_DATABASE_URL,
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_DATABASE_URL
     );
-    const anonKey = getFirstEnvValue(
-        'NEXT_PUBLIC_SUPABASE_ANON_KEY',
-        'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY',
-        'SUPABASE_ANON_KEY',
-        'SUPABASE_PUBLISHABLE_KEY'
+    const anonKey = firstDefined(
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+        process.env.SUPABASE_ANON_KEY,
+        process.env.SUPABASE_PUBLISHABLE_KEY
     );
 
     if (!url || !anonKey) {
