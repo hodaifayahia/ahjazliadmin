@@ -34,7 +34,17 @@ function LoginContent() {
             },
         });
         if (error) {
-            setError(error.message);
+            const normalizedMessage = error.message.toLowerCase();
+
+            if (
+                normalizedMessage.includes('unsupported provider') ||
+                normalizedMessage.includes('provider is not enabled')
+            ) {
+                setError('Google sign-in is not enabled in Supabase. Enable Google provider in Authentication > Sign In / Providers and add your site URL to authorized redirect URLs.');
+            } else {
+                setError(error.message);
+            }
+
             setIsLoading(false);
         }
     };
