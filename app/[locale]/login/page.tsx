@@ -12,13 +12,21 @@ function LoginContent() {
     const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-
-    const supabase = createClient();
     const errorParam = searchParams.get('error');
     const locale = useLocale();
 
     const handleGoogleSignIn = async () => {
         setIsLoading(true);
+        let supabase;
+
+        try {
+            supabase = createClient();
+        } catch {
+            setError('Authentication configuration is missing. Please contact support.');
+            setIsLoading(false);
+            return;
+        }
+
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {

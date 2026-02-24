@@ -120,7 +120,6 @@ function LanguageSwitcher({ locale }: { locale: string }) {
 export default function DashboardLayout({ user, profile, locale, children }: DashboardLayoutProps) {
     const router = useRouter();
     const pathname = usePathname();
-    const supabase = createClient();
     const t = useTranslations('Admin');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -136,7 +135,15 @@ export default function DashboardLayout({ user, profile, locale, children }: Das
     ];
 
     const handleSignOut = async () => {
-        await supabase.auth.signOut();
+        try {
+            const supabase = createClient();
+            await supabase.auth.signOut();
+        } catch {
+            router.push(`/${locale}/login`);
+            router.refresh();
+            return;
+        }
+
         router.push(`/${locale}/login`);
         router.refresh();
     };
