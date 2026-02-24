@@ -66,6 +66,13 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 Use the **same Supabase credentials** as your main app.
 
+For Netlify deployments, add these in **Site settings → Environment variables** for Production (and Preview if needed). The app also accepts fallback names:
+
+```bash
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
 ### 2. Run the SQL Migration
 
 Run this in Supabase SQL Editor:

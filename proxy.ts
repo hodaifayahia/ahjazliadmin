@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
+import { getSupabaseEnv } from './lib/supabase/env';
 
 const intlMiddleware = createMiddleware({
     locales: ['en', 'fr', 'ar'],
@@ -10,14 +11,15 @@ const intlMiddleware = createMiddleware({
 
 export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
+    const { url, anonKey } = getSupabaseEnv();
 
     // Handle i18n first
     const response = intlMiddleware(request);
 
     // Create Supabase client
     const supabase = createServerClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        url,
+        anonKey,
         {
             cookies: {
                 getAll() {
