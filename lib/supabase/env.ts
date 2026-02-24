@@ -10,7 +10,12 @@ const getFirstEnvValue = (...keys: string[]): string | undefined => {
 };
 
 export const getSupabaseEnv = () => {
-    const url = getFirstEnvValue('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL');
+    const url = getFirstEnvValue(
+        'NEXT_PUBLIC_SUPABASE_URL',
+        'SUPABASE_URL',
+        'NEXT_PUBLIC_SUPABASE_DATABASE_URL',
+        'SUPABASE_DATABASE_URL'
+    );
     const anonKey = getFirstEnvValue(
         'NEXT_PUBLIC_SUPABASE_ANON_KEY',
         'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY',
@@ -20,7 +25,7 @@ export const getSupabaseEnv = () => {
 
     if (!url || !anonKey) {
         throw new Error(
-            'Missing Supabase environment variables. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY (or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY).'
+            'Missing Supabase environment variables. Set NEXT_PUBLIC_SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_DATABASE_URL) and NEXT_PUBLIC_SUPABASE_ANON_KEY (or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY).'
         );
     }
 
