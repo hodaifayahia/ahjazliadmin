@@ -61,15 +61,22 @@ Create `.env.local` in the `adminahjazli` directory:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
 ```
 
 Use the **same Supabase credentials** as your main app.
+
+If your project still uses anon naming, this is also accepted:
+
+```bash
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
 For Netlify deployments, add these in **Site settings → Environment variables** for Production (and Preview if needed). The app also accepts fallback names:
 
 ```bash
 SUPABASE_URL=your_supabase_url
+SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
 SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
