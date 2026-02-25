@@ -62,21 +62,35 @@ Create `.env.local` in the `adminahjazli` directory:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+NEXT_PUBLIC_SITE_URL=https://your-site.netlify.app
 ```
 
 Use the **same Supabase credentials** as your main app.
-
-If your project still uses anon naming, this is also accepted:
-
-```bash
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
 
 For Netlify deployments, add these in **Site settings → Environment variables** for Production (and Preview if needed). The app also accepts fallback names:
 
 ```bash
 SUPABASE_URL=your_supabase_url
 SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+```
+
+For Netlify production, set `NEXT_PUBLIC_SITE_URL` to your exact public domain (for example `https://admin.example.com`).
+
+### Netlify + Google OAuth checklist
+
+- In Supabase Auth URL configuration:
+   - Site URL: `https://your-site.netlify.app` (or your custom domain)
+   - Redirect URLs must include:
+      - `https://your-site.netlify.app/auth/callback`
+      - `http://localhost:3000/auth/callback` (for local dev)
+- In Google Cloud OAuth app:
+   - Authorized redirect URI must be exactly:
+      - `https://nrsmpjrtagtrieujwhya.supabase.co/auth/v1/callback`
+
+Legacy names still work if needed:
+
+```bash
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 

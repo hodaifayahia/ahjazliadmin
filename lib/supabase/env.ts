@@ -29,6 +29,15 @@ const firstDefined = (...values: Array<string | undefined>) => {
     return undefined;
 };
 
+const isSupabaseUrl = (value: string) => {
+    try {
+        const parsed = new URL(value);
+        return parsed.protocol.startsWith('http') && parsed.hostname.endsWith('.supabase.co');
+    } catch {
+        return false;
+    }
+};
+
 export const getSupabaseEnv = () => {
     const url = firstDefined(
         process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -38,12 +47,26 @@ export const getSupabaseEnv = () => {
         process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
         process.env.SUPABASE_PUBLISHABLE_KEY,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-        process.env.SUPABASE_ANON_KEY
+        process.env.SUPABASE_ANON_KEY,
+        process.env.NEXT_PUBLIC_SUPABASE_KEY,
+        process.env.SUPABASE_KEY
     );
 
-    if (!url || !anonKey) {
+    if (!url) {
         throw new Error(
-            'Missing Supabase environment variables. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY (or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY).'
+            'Missing Supabase URL. Set NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL).'
+        );
+    }
+
+    if (!isSupabaseUrl(url)) {
+        throw new Error(
+            'Invalid Supabase URL. Expected format: https://<project-ref>.supabase.co'
+        );
+    }
+
+    if (!anonKey) {
+        throw new Error(
+            'Missing Supabase public API key. Set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (preferred) or NEXT_PUBLIC_SUPABASE_ANON_KEY.'
         );
     }
 
