@@ -21,8 +21,12 @@ function LoginContent() {
 
         try {
             supabase = createClient();
-        } catch {
-            setError('Authentication configuration is missing. Please contact support.');
+        } catch (error) {
+            setError(
+                error instanceof Error
+                    ? error.message
+                    : 'Authentication configuration is missing. Please contact support.'
+            );
             setIsLoading(false);
             return;
         }
