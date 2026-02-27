@@ -100,8 +100,14 @@ export const getSupabaseEnv = () => {
     );
 
     if (!url) {
+        const debugInfo = `
+NEXT_PUBLIC_SUPABASE_URL: ${process.env.NEXT_PUBLIC_SUPABASE_URL ? '✓ set' : '✗ not found'}
+SUPABASE_URL: ${process.env.SUPABASE_URL ? '✓ set' : '✗ not found'}
+
+Fix: In Railway Variables, add NEXT_PUBLIC_SUPABASE_URL with your Supabase project URL (https://xyz.supabase.co), then rebuild/redeploy.
+        `.trim();
         throw new Error(
-            'Missing Supabase URL. Set NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL).'
+            `Missing Supabase URL.\n${debugInfo}`
         );
     }
 
@@ -118,8 +124,15 @@ export const getSupabaseEnv = () => {
     }
 
     if (!anonKey) {
+        const debugInfo = `
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ? '✓ set' : '✗ not found'}
+SUPABASE_PUBLISHABLE_KEY: ${process.env.SUPABASE_PUBLISHABLE_KEY ? '✓ set' : '✗ not found'}
+NEXT_PUBLIC_SUPABASE_ANON_KEY: ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '✓ set' : '✗ not found'}
+
+Fix: In Railway Variables, add NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY with your Supabase publishable key (sb_public_... or sb_publishable_...), then rebuild/redeploy.
+        `.trim();
         throw new Error(
-            'Missing Supabase public API key. Set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (preferred) or NEXT_PUBLIC_SUPABASE_ANON_KEY.'
+            `Missing Supabase public API key.\n${debugInfo}`
         );
     }
 
