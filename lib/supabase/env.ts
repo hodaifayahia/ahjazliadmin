@@ -29,10 +29,10 @@ const firstDefined = (...values: Array<string | undefined>) => {
     return undefined;
 };
 
-const isSupabaseUrl = (value: string) => {
+const isValidHttpUrl = (value: string) => {
     try {
         const parsed = new URL(value);
-        return parsed.protocol.startsWith('http') && parsed.hostname.endsWith('.supabase.co');
+        return parsed.protocol === 'http:' || parsed.protocol === 'https:';
     } catch {
         return false;
     }
@@ -58,9 +58,9 @@ export const getSupabaseEnv = () => {
         );
     }
 
-    if (!isSupabaseUrl(url)) {
+    if (!isValidHttpUrl(url)) {
         throw new Error(
-            'Invalid Supabase URL. Expected format: https://<project-ref>.supabase.co'
+            'Invalid Supabase URL. Expected format: https://<your-supabase-host>'
         );
     }
 

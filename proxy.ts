@@ -11,31 +11,9 @@ const intlMiddleware = createMiddleware({
 
 export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
-    const { url, anonKey } = getSupabaseEnv();
 
     // Handle i18n first
     const response = intlMiddleware(request);
-
-    // Create Supabase client
-    const supabase = createServerClient(
-        url,
-        anonKey,
-        {
-            cookies: {
-                getAll() {
-                    return request.cookies.getAll();
-                },
-                setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) =>
-                        response.cookies.set(name, value, options)
-                    );
-                },
-            },
-        }
-    );
-
-    // Check auth
-    const { data: { user } } = await supabase.auth.getUser();
 
     // Extract locale from pathname
     const locale = pathname.split('/')[1];
@@ -50,6 +28,41 @@ export async function proxy(request: NextRequest) {
         pathWithoutLocale === '' ||
         pathWithoutLocale === '/';
 
+    let user: { id: string } | null = null;
+    let supabase: ReturnType<typeof createServerClient> | null = null;
+
+    try {
+        const { url, anonKey } = getSupabaseEnv();
+
+        supabase = createServerClient(
+            url,
+            anonKey,
+            {
+                cookies: {
+                    getAll() {
+                        return request.cookies.getAll();
+                    },
+                    setAll(cookiesToSet) {
+                        cookiesToSet.forEach(({ name, value, options }) =>
+                            response.cookies.set(name, value, options)
+                        );
+                    },
+                },
+            }
+        );
+
+        const { data } = await supabase.auth.getUser();
+        user = data.user;
+    } catch (error) {
+        console.error('Supabase middleware initialization failed:', error);
+        if (!isPublicRoute) {
+            const loginUrl = new URL(`/${effectiveLocale}/login`, request.url);
+            return NextResponse.redirect(loginUrl);
+        }
+
+        return response;
+    }
+
     // If not logged in and trying to access protected route
     if (!user && !isPublicRoute) {
         const loginUrl = new URL(`/${effectiveLocale}/login`, request.url);
@@ -57,7 +70,7 @@ export async function proxy(request: NextRequest) {
     }
 
     // If logged in, check if admin
-    if (user && !isPublicRoute && pathWithoutLocale.startsWith('/dashboard')) {
+    if (user && supabase && !isPublicRoute && pathWithoutLocale.startsWith('/dashboard')) {
         const { data: profile } = await supabase
             .from('profiles')
             .select('role')
