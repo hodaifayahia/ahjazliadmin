@@ -57,6 +57,7 @@ export async function proxy(request: NextRequest) {
         console.error('Supabase middleware initialization failed:', error);
         if (!isPublicRoute) {
             const loginUrl = new URL(`/${effectiveLocale}/login`, request.url);
+            loginUrl.searchParams.set('redirectTo', pathWithoutLocale || '/dashboard');
             return NextResponse.redirect(loginUrl);
         }
 
@@ -66,6 +67,7 @@ export async function proxy(request: NextRequest) {
     // If not logged in and trying to access protected route
     if (!user && !isPublicRoute) {
         const loginUrl = new URL(`/${effectiveLocale}/login`, request.url);
+        loginUrl.searchParams.set('redirectTo', pathWithoutLocale || '/dashboard');
         return NextResponse.redirect(loginUrl);
     }
 

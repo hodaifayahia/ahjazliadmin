@@ -7,6 +7,15 @@ export async function GET(request: Request) {
     const code = requestUrl.searchParams.get('code');
     const localeParam = requestUrl.searchParams.get('locale');
     const locale = localeParam && ['en', 'fr', 'ar'].includes(localeParam) ? localeParam : 'en';
+    const redirectToParam = requestUrl.searchParams.get('redirectTo');
+    const safeRedirectPath =
+        redirectToParam && redirectToParam.startsWith('/') && !redirectToParam.startsWith('//')
+            ? redirectToParam
+            : '/dashboard';
+    const localizedRedirectPath =
+        safeRedirectPath.startsWith(`/${locale}/`) || safeRedirectPath === `/${locale}`
+            ? safeRedirectPath
+            : `/${locale}${safeRedirectPath}`;
 
     if (code) {
         const cookieStore = await cookies();
@@ -38,8 +47,8 @@ export async function GET(request: Request) {
             return NextResponse.redirect(new URL(`/${locale}/access-denied`, request.url));
         }
 
-        // Admin verified - redirect to dashboard
-        return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
+        // Admin verified - redirect to intended page
+        return NextResponse.redirect(new URL(localizedRedirectPath, request.url));
     }
 
     // Return the user to an error page with instructions

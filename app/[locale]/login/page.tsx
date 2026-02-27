@@ -1,14 +1,12 @@
 'use client';
 
 import { useState, Suspense } from 'react';
-import { createClient } from '@/lib/supabase/client';
 import { motion } from 'framer-motion';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 
 function LoginContent() {
     const t = useTranslations('Login');
-    const router = useRouter();
     const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
@@ -17,40 +15,11 @@ function LoginContent() {
 
     const handleGoogleSignIn = async () => {
         setIsLoading(true);
-        let supabase;
-
-        try {
-            supabase = createClient();
-        } catch (error) {
-            setError(
-                error instanceof Error
-                    ? error.message
-                    : 'Authentication configuration is missing. Please contact support.'
-            );
-            setIsLoading(false);
-            return;
-        }
-
-        const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: `${(process.env.NEXT_PUBLIC_SITE_URL || window.location.origin).replace(/\/$/, '')}/auth/callback?locale=${locale}`,
-            },
-        });
-        if (error) {
-            const normalizedMessage = error.message.toLowerCase();
-
-            if (
-                normalizedMessage.includes('unsupported provider') ||
-                normalizedMessage.includes('provider is not enabled')
-            ) {
-                setError('Google sign-in is not enabled in Supabase. Enable Google provider in Authentication > Sign In / Providers and add your site URL to authorized redirect URLs.');
-            } else {
-                setError(error.message);
-            }
-
-            setIsLoading(false);
-        }
+        const redirectTo = searchParams.get('redirectTo') || '/dashboard';
+        const signInUrl = new URL('/auth/sign-in/google', window.location.origin);
+        signInUrl.searchParams.set('locale', locale);
+        signInUrl.searchParams.set('redirectTo', redirectTo);
+        window.location.assign(signInUrl.toString());
     };
 
     return (
