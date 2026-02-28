@@ -16,7 +16,8 @@ function LoginContent() {
     const handleGoogleSignIn = async () => {
         setIsLoading(true);
         const redirectTo = searchParams.get('redirectTo') || '/dashboard';
-        const signInUrl = new URL('/auth/sign-in/google', window.location.origin);
+        const siteOrigin = (process.env.NEXT_PUBLIC_SITE_URL || window.location.origin).replace(/\/$/, '');
+        const signInUrl = new URL('/auth/sign-in/google', siteOrigin);
         signInUrl.searchParams.set('locale', locale);
         signInUrl.searchParams.set('redirectTo', redirectTo);
         window.location.assign(signInUrl.toString());
