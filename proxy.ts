@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
+import type { User } from '@supabase/supabase-js';
 import { getSupabaseEnv } from './lib/supabase/env';
 import { getUserRoleFallback, isAdminRole } from './lib/auth/roles';
 
@@ -29,7 +30,7 @@ export async function proxy(request: NextRequest) {
         pathWithoutLocale === '' ||
         pathWithoutLocale === '/';
 
-    let user: { id: string } | null = null;
+    let user: User | null = null;
     let supabase: ReturnType<typeof createServerClient> | null = null;
 
     try {
