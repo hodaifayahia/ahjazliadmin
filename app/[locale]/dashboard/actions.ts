@@ -3,6 +3,7 @@
 import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { getUserRoleFallback, isAdminRole } from '@/lib/auth/roles';
 
 // Multi-language notification templates
 const notificationTemplates = {
@@ -85,7 +86,7 @@ export async function sendNotification(
         .eq('id', user.id)
         .single();
 
-    if (adminProfile?.role !== 'admin') throw new Error('Forbidden');
+    if (!isAdminRole(adminProfile?.role || getUserRoleFallback(user))) throw new Error('Forbidden');
 
     const { error } = await supabase.from('notifications').insert({
         recipient_id: recipientId,
@@ -122,7 +123,7 @@ export async function sendBulkNotifications(
         .eq('id', user.id)
         .single();
 
-    if (adminProfile?.role !== 'admin') throw new Error('Forbidden');
+    if (!isAdminRole(adminProfile?.role || getUserRoleFallback(user))) throw new Error('Forbidden');
 
     // Build query based on filter
     let query = supabase.from('profiles').select('id');
@@ -179,7 +180,7 @@ export async function updateVenueStatus(
         .eq('id', user.id)
         .single();
 
-    if (profile?.role !== 'admin') throw new Error('Forbidden');
+    if (!isAdminRole(profile?.role || getUserRoleFallback(user))) throw new Error('Forbidden');
 
     const updateData: any = { status };
     if (rejectionReason) updateData.rejection_reason = rejectionReason;
@@ -243,7 +244,7 @@ export async function updateUserStatus(userId: string, status: 'pending' | 'acti
         .eq('id', user.id)
         .single();
 
-    if (adminProfile?.role !== 'admin') throw new Error('Forbidden');
+    if (!isAdminRole(adminProfile?.role || getUserRoleFallback(user))) throw new Error('Forbidden');
 
     const { error: updateError } = await supabase
         .from('profiles')
@@ -289,7 +290,7 @@ export async function sendPendingReminders() {
         .eq('id', user.id)
         .single();
 
-    if (adminProfile?.role !== 'admin') throw new Error('Forbidden');
+    if (!isAdminRole(adminProfile?.role || getUserRoleFallback(user))) throw new Error('Forbidden');
 
     // Get pending users
     const { data: pendingUsers, error } = await supabase

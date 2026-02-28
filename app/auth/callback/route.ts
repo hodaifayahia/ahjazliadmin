@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { getUserRoleFallback, isAdminRole } from '@/lib/auth/roles';
 
 export async function GET(request: Request) {
     const requestUrl = new URL(request.url);
@@ -41,7 +42,9 @@ export async function GET(request: Request) {
             .eq('id', user.id)
             .single();
 
-        if (!profile || profile.role !== 'admin') {
+        const effectiveRole = profile?.role || getUserRoleFallback(user);
+
+        if (!isAdminRole(effectiveRole)) {
             // Not an admin - sign them out and redirect to access denied
             await supabase.auth.signOut();
             return NextResponse.redirect(new URL(`/${locale}/access-denied`, request.url));

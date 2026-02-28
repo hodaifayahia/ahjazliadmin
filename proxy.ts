@@ -2,6 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { getSupabaseEnv } from './lib/supabase/env';
+import { getUserRoleFallback, isAdminRole } from './lib/auth/roles';
 
 const intlMiddleware = createMiddleware({
     locales: ['en', 'fr', 'ar'],
@@ -79,8 +80,10 @@ export async function proxy(request: NextRequest) {
             .eq('id', user.id)
             .single();
 
+        const effectiveRole = profile?.role || getUserRoleFallback(user);
+
         // If not admin, show access denied (you can redirect to main app if you want)
-        if (!profile || profile.role !== 'admin') {
+        if (!isAdminRole(effectiveRole)) {
             const deniedUrl = new URL(`/${effectiveLocale}/access-denied`, request.url);
             return NextResponse.redirect(deniedUrl);
         }

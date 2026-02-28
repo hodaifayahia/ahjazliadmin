@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardLayout from './DashboardLayout';
+import { getUserRoleFallback, isAdminRole } from '@/lib/auth/roles';
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -21,8 +22,10 @@ export default async function Layout({ children, params }: { children: React.Rea
         .eq('id', user.id)
         .single();
 
+    const effectiveRole = profile?.role || getUserRoleFallback(user);
+
     // Check if user is admin - redirect to access denied if not
-    if (!profile || profile.role !== 'admin') {
+    if (!isAdminRole(effectiveRole)) {
         redirect(`/${locale}/access-denied`);
     }
 
