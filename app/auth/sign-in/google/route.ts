@@ -2,6 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { getSupabaseEnv } from '@/lib/supabase/env';
 import { getRequestOrigin } from '@/lib/auth/origin';
+import { checkRateLimit, getClientIP } from '@/lib/auth/rate-limit';
 
 const SUPPORTED_LOCALES = ['en', 'fr', 'ar'];
 
@@ -32,6 +33,17 @@ export async function GET(request: NextRequest) {
     const locale = localeParam && SUPPORTED_LOCALES.includes(localeParam) ? localeParam : 'en';
     const redirectTo = normalizeRedirectPath(requestUrl.searchParams.get('redirectTo'));
     const origin = getRequestOrigin(request);
+
+    // Check rate limit before initiating OAuth
+    const ip = getClientIP(request);
+    const rateCheck = checkRateLimit(ip);
+    if (rateCheck.blocked) {
+        const blockedUrl = new URL(`/${locale}/access-denied`, origin);
+        blockedUrl.searchParams.set('blocked', 'true');
+        blockedUrl.searchParams.set('remaining', String(rateCheck.remainingSeconds));
+        return NextResponse.redirect(blockedUrl);
+    }
+
     const { url, anonKey } = getSupabaseEnv();
 
     const response = NextResponse.next();

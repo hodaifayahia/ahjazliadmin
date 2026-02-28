@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { getUserRoleFallback, isAdminRole } from '@/lib/auth/roles';
 import { getSupabaseEnv } from '@/lib/supabase/env';
 import { getRequestOrigin } from '@/lib/auth/origin';
+import { checkRateLimit, getClientIP, recordFailedAttempt, clearBlock } from '@/lib/auth/rate-limit';
 
 const redirectWithCookies = (
     baseResponse: NextResponse,
@@ -33,6 +34,16 @@ export async function GET(request: NextRequest) {
             ? safeRedirectPath
             : `/${locale}${safeRedirectPath}`;
 
+    // Check rate limit before processing
+    const ip = getClientIP(request);
+    const rateCheck = checkRateLimit(ip);
+    if (rateCheck.blocked) {
+        const blockedUrl = new URL(`/${locale}/access-denied`, origin);
+        blockedUrl.searchParams.set('blocked', 'true');
+        blockedUrl.searchParams.set('remaining', String(rateCheck.remainingSeconds));
+        return NextResponse.redirect(blockedUrl);
+    }
+
     if (code) {
         const { url, anonKey } = getSupabaseEnv();
         const response = NextResponse.next();
@@ -53,7 +64,7 @@ export async function GET(request: NextRequest) {
             }
         );
         const { error } = await supabase.auth.exchangeCodeForSession(code);
-        
+
         if (error) {
             console.error('Auth callback error:', error);
             return redirectWithCookies(response, new URL(`/${locale}/login?error=auth_failed`, origin));
@@ -61,7 +72,7 @@ export async function GET(request: NextRequest) {
 
         // Verify the user is an admin
         const { data: { user } } = await supabase.auth.getUser();
-        
+
         if (!user) {
             return redirectWithCookies(response, new URL(`/${locale}/login?error=no_user`, origin));
         }
@@ -76,12 +87,19 @@ export async function GET(request: NextRequest) {
         const effectiveRole = profile?.role || getUserRoleFallback(user);
 
         if (!isAdminRole(effectiveRole)) {
-            // Not an admin - sign them out and redirect to access denied
+            // Not an admin - sign them out, record failed attempt, and redirect to access denied
             await supabase.auth.signOut();
-            return redirectWithCookies(response, new URL(`/${locale}/access-denied`, origin));
+            recordFailedAttempt(ip);
+
+            const rateInfo = checkRateLimit(ip);
+            const blockedUrl = new URL(`/${locale}/access-denied`, origin);
+            blockedUrl.searchParams.set('blocked', 'true');
+            blockedUrl.searchParams.set('remaining', String(rateInfo.remainingSeconds));
+            return redirectWithCookies(response, blockedUrl);
         }
 
-        // Admin verified - redirect to intended page
+        // Admin verified - clear any blocks and redirect to intended page
+        clearBlock(ip);
         return redirectWithCookies(response, new URL(localizedRedirectPath, origin));
     }
 
