@@ -1,6 +1,6 @@
-type UserWithRoleMetadata = {
-    app_metadata?: { role?: string | null };
-    user_metadata?: { role?: string | null };
+type UserLike = {
+    app_metadata?: unknown;
+    user_metadata?: unknown;
 };
 
 export const normalizeRole = (role?: string | null) =>
@@ -11,5 +11,14 @@ export const isAdminRole = (role?: string | null) => {
     return normalized === 'admin' || normalized === 'super_admin';
 };
 
-export const getUserRoleFallback = (user: UserWithRoleMetadata | null | undefined) =>
-    normalizeRole(user?.app_metadata?.role || user?.user_metadata?.role);
+const readRoleFromMetadata = (metadata: unknown) => {
+    if (!metadata || typeof metadata !== 'object') {
+        return '';
+    }
+
+    const roleValue = (metadata as Record<string, unknown>).role;
+    return typeof roleValue === 'string' ? roleValue : '';
+};
+
+export const getUserRoleFallback = (user: UserLike | null | undefined) =>
+    normalizeRole(readRoleFromMetadata(user?.app_metadata) || readRoleFromMetadata(user?.user_metadata));
