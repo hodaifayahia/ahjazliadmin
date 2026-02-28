@@ -7,7 +7,7 @@ const locales = ['en', 'fr', 'ar'];
 
 const intlMiddleware = createMiddleware({
     locales,
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     localePrefix: 'always'
 });
 
@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
     // Extract locale from pathname
     const pathLocale = pathname.split('/')[1];
     const isValidLocale = locales.includes(pathLocale);
-    const effectiveLocale = isValidLocale ? pathLocale : 'en';
+    const effectiveLocale = isValidLocale ? pathLocale : 'fr';
     const pathWithoutLocale = isValidLocale ? pathname.slice(pathLocale.length + 1) : pathname;
 
     // Public routes that don't need auth

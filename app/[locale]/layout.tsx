@@ -4,6 +4,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { arabicFont } from "@/lib/fonts";
 import AppProviders from "@/components/AppProviders";
+import '../globals.css';
 
 export const metadata: Metadata = {
     title: "Admin Panel - Ahjazli Qaati",
@@ -32,28 +33,22 @@ export default async function RootLayout({
     const messages = await getMessages();
     const dir = locale === "ar" ? "rtl" : "ltr";
     const fontClass = locale === "ar" ? arabicFont.className : "font-parkinsans";
-    const runtimeSupabaseEnv = {
-        url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '',
-        anonKey:
-            process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-            process.env.SUPABASE_PUBLISHABLE_KEY ||
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-            process.env.SUPABASE_ANON_KEY ||
-            '',
-    };
 
     return (
-        <NextIntlClientProvider messages={messages}>
-            <AppProviders>
-                <div className={`${fontClass} antialiased`} dir={dir} lang={locale}>
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `window.__SUPABASE_ENV__ = ${JSON.stringify(runtimeSupabaseEnv)};`,
-                        }}
-                    />
-                    {children}
-                </div>
-            </AppProviders>
-        </NextIntlClientProvider>
+        <html lang={locale} dir={dir}>
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+                <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>" />
+            </head>
+            <body className={`${fontClass} antialiased`}>
+                <NextIntlClientProvider messages={messages}>
+                    <AppProviders>
+                        {children}
+                    </AppProviders>
+                </NextIntlClientProvider>
+            </body>
+        </html>
     );
 }

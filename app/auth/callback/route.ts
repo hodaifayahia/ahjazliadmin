@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     const origin = getRequestOrigin(request);
     const code = requestUrl.searchParams.get('code');
     const localeParam = requestUrl.searchParams.get('locale');
-    const locale = localeParam && ['en', 'fr', 'ar'].includes(localeParam) ? localeParam : 'en';
+    const locale = localeParam && ['en', 'fr', 'ar'].includes(localeParam) ? localeParam : 'fr';
     const redirectToParam = requestUrl.searchParams.get('redirectTo');
     const safeRedirectPath =
         redirectToParam && redirectToParam.startsWith('/') && !redirectToParam.startsWith('//')

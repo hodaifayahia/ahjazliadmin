@@ -1,250 +1,250 @@
 {
     "Admin": {
-        "title": "Ø§Ù„Ù…Ø´Ø±Ù",
-        "subtitle": "Ù„ÙˆØ­Ø© Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©",
+        "title": "المشرف",
+        "subtitle": "لوحة الإدارة",
         "nav": {
-            "dashboard": "Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…",
-            "venues": "Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
-            "users": "Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†",
-            "inquiries": "Ø§Ù„Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª",
-            "notifications": "Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª",
-            "settings": "Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª"
+            "dashboard": "لوحة التحكم",
+            "venues": "القاعات",
+            "users": "المستخدمين",
+            "inquiries": "الاستفسارات",
+            "notifications": "الإشعارات",
+            "settings": "الإعدادات"
         },
         "header": {
-            "signout": "ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬"
+            "signout": "تسجيل الخروج"
         },
         "role": {
-            "admin": "Ø§Ù„Ù…Ø³Ø¤ÙˆÙ„",
-            "full_access": "ÙˆØµÙˆÙ„ ÙƒØ§Ù…Ù„ Ù„Ù„Ù…Ù†ØµØ©"
+            "admin": "المسؤول",
+            "full_access": "وصول كامل للمنصة"
         }
     },
     "Dashboard": {
-        "title": "Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…",
-        "subtitle": "Ø±Ø§Ù‚Ø¨ ÙˆØ£Ø¯Ø± Ù…Ù†ØµØªÙƒ",
-        "welcome": "Ù…Ø±Ø­Ø¨Ø§Ù‹ Ø¨Ø¹ÙˆØ¯ØªÙƒ",
-        "welcome_subtitle": "Ø¥Ù„ÙŠÙƒ Ù…Ø§ ÙŠØ­Ø¯Ø« ÙÙŠ Ù…Ù†ØµØªÙƒ Ø§Ù„ÙŠÙˆÙ…",
+        "title": "لوحة التحكم",
+        "subtitle": "راقب وأدر منصتك",
+        "welcome": "مرحباً بعودتك",
+        "welcome_subtitle": "إليك ما يحدث في منصتك اليوم",
         "stats": {
-            "pending_venues": "Ù‚Ø§Ø¹Ø§Øª Ù‚ÙŠØ¯ Ø§Ù„Ø§Ù†ØªØ¸Ø§Ø±",
-            "approved_venues": "Ù‚Ø§Ø¹Ø§Øª Ù…Ø¹ØªÙ…Ø¯Ø©",
-            "published_venues": "Ù‚Ø§Ø¹Ø§Øª Ù…Ù†Ø´ÙˆØ±Ø©",
-            "rejected_venues": "Ù‚Ø§Ø¹Ø§Øª Ù…Ø±ÙÙˆØ¶Ø©",
-            "pending_users": "Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† Ù‚ÙŠØ¯ Ø§Ù„Ø§Ù†ØªØ¸Ø§Ø±",
-            "active_users": "Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† Ù†Ø´Ø·ÙŠÙ†",
-            "rejected_users": "Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† Ù…Ø±ÙÙˆØ¶ÙŠÙ†",
-            "total_inquiries": "Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª",
-            "this_month": "Ù‡Ø°Ø§ Ø§Ù„Ø´Ù‡Ø±"
+            "pending_venues": "قاعات قيد الانتظار",
+            "approved_venues": "قاعات معتمدة",
+            "published_venues": "قاعات منشورة",
+            "rejected_venues": "قاعات مرفوضة",
+            "pending_users": "مستخدمين قيد الانتظار",
+            "active_users": "مستخدمين نشطين",
+            "rejected_users": "مستخدمين مرفوضين",
+            "total_inquiries": "إجمالي الاستفسارات",
+            "this_month": "هذا الشهر"
         },
         "quick_actions": {
-            "title": "Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª Ø³Ø±ÙŠØ¹Ø©",
-            "manage_venues": "Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
-            "manage_venues_desc": "Ù…Ø±Ø§Ø¬Ø¹Ø© ÙˆØ§Ù„Ù…ÙˆØ§ÙÙ‚Ø© Ø¹Ù„Ù‰ Ø¥Ø¹Ù„Ø§Ù†Ø§Øª Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
-            "manage_users": "Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†",
-            "manage_users_desc": "Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø© Ø¹Ù„Ù‰ Ø­Ø³Ø§Ø¨Ø§Øª Ù…Ø§Ù„ÙƒÙŠ Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
-            "view_inquiries": "Ø¹Ø±Ø¶ Ø§Ù„Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª",
-            "view_inquiries_desc": "Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª ÙˆØ±Ø³Ø§Ø¦Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡"
+            "title": "إجراءات سريعة",
+            "manage_venues": "إدارة القاعات",
+            "manage_venues_desc": "مراجعة والموافقة على إعلانات القاعات",
+            "manage_users": "إدارة المستخدمين",
+            "manage_users_desc": "الموافقة على حسابات مالكي القاعات",
+            "view_inquiries": "عرض الاستفسارات",
+            "view_inquiries_desc": "استفسارات ورسائل العملاء"
         },
         "recent_activity": {
-            "title": "Ø§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ø£Ø®ÙŠØ±",
-            "empty": "Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù†Ø´Ø§Ø· Ø­Ø¯ÙŠØ« Ù„Ø¹Ø±Ø¶Ù‡"
+            "title": "النشاط الأخير",
+            "empty": "لا يوجد نشاط حديث لعرضه"
         }
     },
     "Venues": {
-        "title": "Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
-        "subtitle": "Ù…Ø±Ø§Ø¬Ø¹Ø© ÙˆØ¥Ø¯Ø§Ø±Ø© Ø¥Ø¹Ù„Ø§Ù†Ø§Øª Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
+        "title": "إدارة القاعات",
+        "subtitle": "مراجعة وإدارة إعلانات القاعات",
         "tabs": {
-            "pending": "Ù‚ÙŠØ¯ Ø§Ù„Ø§Ù†ØªØ¸Ø§Ø±",
-            "approved": "Ù…Ø¹ØªÙ…Ø¯",
-            "published": "Ù…Ù†Ø´ÙˆØ±",
-            "rejected": "Ù…Ø±ÙÙˆØ¶"
+            "pending": "قيد الانتظار",
+            "approved": "معتمد",
+            "published": "منشور",
+            "rejected": "مرفوض"
         },
-        "no_venues": "Ù„Ø§ ØªÙˆØ¬Ø¯ Ù‚Ø§Ø¹Ø§Øª {status}.",
+        "no_venues": "لا توجد قاعات {status}.",
         "fields": {
-            "owner": "Ø§Ù„Ù…Ø§Ù„Ùƒ",
-            "price": "Ø§Ù„Ø³Ø¹Ø±",
-            "capacity": "Ø§Ù„Ø³Ø¹Ø©",
-            "guests": "Ø¶ÙŠÙ",
-            "submitted": "ØªÙ… Ø§Ù„ØªÙ‚Ø¯ÙŠÙ…",
-            "contact_price": "ØªÙˆØ§ØµÙ„ Ù„Ù„Ø³Ø¹Ø±",
-            "location": "Ø§Ù„Ù…ÙˆÙ‚Ø¹",
-            "date": "Ø§Ù„ØªØ§Ø±ÙŠØ®",
-            "address": "Address",
-            "email": "Email",
-            "phone": "Phone"
+            "owner": "المالك",
+            "price": "السعر",
+            "capacity": "السعة",
+            "guests": "ضيف",
+            "submitted": "تم التقديم",
+            "contact_price": "تواصل للسعر",
+            "location": "الموقع",
+            "date": "التاريخ",
+            "address": "العنوان",
+            "email": "البريد الإلكتروني",
+            "phone": "الهاتف"
         },
         "actions": {
-            "approve": "Ù…ÙˆØ§ÙÙ‚Ø©",
-            "reject": "Ø±ÙØ¶",
-            "view": "Review",
-            "publish": "Ù†Ø´Ø±",
-            "unpublish": "Ø¥Ù„ØºØ§Ø¡ Ø§Ù„Ù†Ø´Ø±",
-            "call_owner": "Call Owner",
-            "notify_owner": "Notify Owner",
-            "call_venue": "Call Venue",
-            "pending": "Set Pending"
+            "approve": "موافقة",
+            "reject": "رفض",
+            "view": "مراجعة",
+            "publish": "نشر",
+            "unpublish": "إلغاء النشر",
+            "call_owner": "اتصل بالمالك",
+            "notify_owner": "إشعار المالك",
+            "call_venue": "اتصل بالقاعة",
+            "pending": "تعيين كمعلق"
         },
-        "rejection_reason": "Ø³Ø¨Ø¨ Ø§Ù„Ø±ÙØ¶",
+        "rejection_reason": "سبب الرفض",
         "reject_modal": {
-            "title": "Ø±ÙØ¶ Ø§Ù„Ù‚Ø§Ø¹Ø©",
-            "description": "ÙŠØ±Ø¬Ù‰ ØªÙ‚Ø¯ÙŠÙ… Ø³Ø¨Ø¨ Ù„Ø±ÙØ¶ \"{{venue}}\"",
-            "placeholder": "Ø£Ø¯Ø®Ù„ Ø³Ø¨Ø¨ Ø§Ù„Ø±ÙØ¶ (Ù…Ø«Ø§Ù„: Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ù†Ø§Ù‚ØµØ©ØŒ Ù„Ø§ ØªÙ„Ø¨ÙŠ Ø§Ù„Ù…Ø¹Ø§ÙŠÙŠØ±ØŒ Ø¥Ù„Ø®)",
-            "cancel": "Ø¥Ù„ØºØ§Ø¡",
-            "confirm": "Ø±ÙØ¶ Ø§Ù„Ù‚Ø§Ø¹Ø©",
-            "submitting": "Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø±ÙØ¶..."
+            "title": "رفض القاعة",
+            "description": "يرجى تقديم سبب لرفض \"{venue}\"",
+            "placeholder": "أدخل سبب الرفض (مثال: معلومات ناقصة، لا تلبي المعايير، إلخ)",
+            "cancel": "إلغاء",
+            "confirm": "رفض القاعة",
+            "submitting": "جاري الرفض..."
         },
-        "summary": "Venues {status}",
+        "summary": "القاعات {status}",
         "drawer": {
-            "title": "Venue Details",
+            "title": "تفاصيل القاعة",
             "sections": {
-                "description": "Description",
-                "amenities": "Amenities",
-                "owner": "Owner",
-                "contact": "Contact"
+                "description": "الوصف",
+                "amenities": "المرافق",
+                "owner": "المالك",
+                "contact": "التواصل"
             }
         },
         "notify": {
-            "title": "Send Notification",
+            "title": "إرسال إشعار",
             "fields": {
-                "title": "Title",
-                "message": "Message"
+                "title": "العنوان",
+                "message": "الرسالة"
             },
             "placeholders": {
-                "title": "Enter notification title...",
-                "message": "Enter your message..."
+                "title": "أدخل عنوان الإشعار...",
+                "message": "أدخل رسالتك..."
             },
             "types": {
-                "info": "Info",
-                "success": "Success",
-                "warning": "Warning",
-                "error": "Error"
+                "info": "معلومات",
+                "success": "نجاح",
+                "warning": "تحذير",
+                "error": "خطأ"
             },
-            "send": "Send"
+            "send": "إرسال"
         }
     },
     "Users": {
-        "title": "Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†",
-        "subtitle": "Ø¥Ø¯Ø§Ø±Ø© Ø­Ø³Ø§Ø¨Ø§Øª Ù…Ø§Ù„ÙƒÙŠ Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
+        "title": "إدارة المستخدمين",
+        "subtitle": "إدارة حسابات مالكي القاعات",
         "tabs": {
-            "pending": "Ù‚ÙŠØ¯ Ø§Ù„Ø§Ù†ØªØ¸Ø§Ø±",
-            "active": "Ù†Ø´Ø·",
-            "rejected": "Ù…Ø±ÙÙˆØ¶"
+            "pending": "قيد الانتظار",
+            "active": "نشط",
+            "rejected": "مرفوض"
         },
-        "no_users": "Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† {status}.",
+        "no_users": "لا يوجد مستخدمين {status}.",
         "fields": {
-            "name": "Ø§Ù„Ø§Ø³Ù…",
-            "email": "Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ",
-            "role": "Ø§Ù„Ø¯ÙˆØ±",
-            "joined": "ØªØ§Ø±ÙŠØ® Ø§Ù„Ø§Ù†Ø¶Ù…Ø§Ù…",
-            "business": "Ø§Ù„Ø¹Ù…Ù„",
-            "phone": "Phone",
-            "id": "User ID"
+            "name": "الاسم",
+            "email": "البريد الإلكتروني",
+            "role": "الدور",
+            "joined": "تاريخ الانضمام",
+            "business": "العمل",
+            "phone": "الهاتف",
+            "id": "معرف المستخدم"
         },
         "roles": {
-            "admin": "Ù…Ø³Ø¤ÙˆÙ„",
-            "venue_owner": "Ù…Ø§Ù„Ùƒ Ù‚Ø§Ø¹Ø©",
-            "user": "Ù…Ø³ØªØ®Ø¯Ù…"
+            "admin": "مسؤول",
+            "venue_owner": "مالك قاعة",
+            "user": "مستخدم"
         },
         "actions": {
-            "approve": "Ù…ÙˆØ§ÙÙ‚Ø©",
-            "reject": "Ø±ÙØ¶",
-            "view": "Review",
-            "call": "Call",
-            "notify": "Notify",
-            "pending": "Set Pending"
+            "approve": "موافقة",
+            "reject": "رفض",
+            "view": "مراجعة",
+            "call": "اتصال",
+            "notify": "إشعار",
+            "pending": "تعيين كمعلق"
         },
-        "summary": "Users {status}",
+        "summary": "المستخدمين {status}",
         "drawer": {
-            "title": "User Profile",
+            "title": "ملف المستخدم",
             "sections": {
-                "profile": "Profile Details",
-                "actions": "Quick Actions"
+                "profile": "تفاصيل الملف",
+                "actions": "إجراءات سريعة"
             }
         },
         "notify": {
-            "title": "Send Notification",
+            "title": "إرسال إشعار",
             "fields": {
-                "title": "Title",
-                "message": "Message"
+                "title": "العنوان",
+                "message": "الرسالة"
             },
             "placeholders": {
-                "title": "Enter notification title...",
-                "message": "Enter your message..."
+                "title": "أدخل عنوان الإشعار...",
+                "message": "أدخل رسالتك..."
             },
             "types": {
-                "info": "Info",
-                "success": "Success",
-                "warning": "Warning",
-                "error": "Error"
+                "info": "معلومات",
+                "success": "نجاح",
+                "warning": "تحذير",
+                "error": "خطأ"
             },
-            "send": "Send"
+            "send": "إرسال"
         }
     },
     "Inquiries": {
-        "title": "Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡",
-        "subtitle": "Ø¹Ø±Ø¶ ÙˆØ¥Ø¯Ø§Ø±Ø© Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡",
-        "no_inquiries": "Ù„Ø§ ØªÙˆØ¬Ø¯ Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª.",
+        "title": "استفسارات العملاء",
+        "subtitle": "عرض وإدارة رسائل العملاء",
+        "no_inquiries": "لا توجد استفسارات.",
         "fields": {
-            "customer": "Ø§Ù„Ø¹Ù…ÙŠÙ„",
-            "venue": "Ø§Ù„Ù‚Ø§Ø¹Ø©",
-            "message": "Ø§Ù„Ø±Ø³Ø§Ù„Ø©",
-            "date": "Ø§Ù„ØªØ§Ø±ÙŠØ®",
-            "owner": "Ø§Ù„Ù…Ø§Ù„Ùƒ",
-            "status": "Ø§Ù„Ø­Ø§Ù„Ø©"
+            "customer": "العميل",
+            "venue": "القاعة",
+            "message": "الرسالة",
+            "date": "التاريخ",
+            "owner": "المالك",
+            "status": "الحالة"
         }
     },
     "Login": {
-        "admin_title": "Ù„ÙˆØ­Ø© Ø§Ù„Ù…Ø´Ø±Ù",
-        "welcome_title": "Ù…Ø±Ø­Ø¨Ø§Ù‹ Ø¨Ø¹ÙˆØ¯ØªÙƒ",
-        "welcome_subtitle": "Ø³Ø¬Ù„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù„Ø¥Ø¯Ø§Ø±Ø© Ù…Ù†ØµØªÙƒ.",
-        "google_btn": "Ø§Ù„Ù…ØªØ§Ø¨Ø¹Ø© Ù…Ø¹ Google",
-        "signing_in": "Ø¬Ø§Ø±ÙŠ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„...",
-        "admin_only": "ÙˆØµÙˆÙ„ Ø§Ù„Ù…Ø´Ø±ÙÙŠÙ† ÙÙ‚Ø·",
-        "help_text": "ÙŠÙ…ÙƒÙ† Ù„Ù„Ù…Ø³Ø¤ÙˆÙ„ÙŠÙ† Ø§Ù„Ù…ØµØ±Ø­ Ù„Ù‡Ù… ÙÙ‚Ø· Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ù‡Ø°Ù‡ Ø§Ù„Ù…Ù†Ø·Ù‚Ø©.",
-        "hero_title": "Ø£Ø¯Ø± Ù…Ù†ØµØªÙƒ Ø¨Ø«Ù‚Ø©",
-        "hero_desc": "Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø£Ø¯ÙˆØ§Øª Ù‚ÙˆÙŠØ© Ù„Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù‚Ø§Ø¹Ø§Øª ÙˆØ§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† ÙˆØ§Ù„Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø¹Ø¨Ø± Ù…Ù†ØµØªÙƒ.",
+        "admin_title": "لوحة المشرف",
+        "welcome_title": "مرحباً بعودتك",
+        "welcome_subtitle": "سجل الدخول لإدارة منصتك.",
+        "google_btn": "المتابعة مع Google",
+        "signing_in": "جاري تسجيل الدخول...",
+        "admin_only": "وصول المشرفين فقط",
+        "help_text": "يمكن للمسؤولين المصرح لهم فقط الوصول إلى هذه المنطقة.",
+        "hero_title": "أدر منصتك بثقة",
+        "hero_desc": "الوصول إلى أدوات قوية لإدارة القاعات والمستخدمين والاستفسارات عبر منصتك.",
         "features": {
-            "full_control": "ØªØ­ÙƒÙ… ÙƒØ§Ù…Ù„ Ø¨Ø§Ù„Ù…Ù†ØµØ©",
-            "analytics": "ØªØ­Ù„ÙŠÙ„Ø§Øª ÙˆØ¥Ø­ØµØ§Ø¦ÙŠØ§Øª ÙÙˆØ±ÙŠØ©",
-            "security": "Ù…ØµØ§Ø¯Ù‚Ø© Ø¢Ù…Ù†Ø©",
-            "support": "ÙˆØµÙˆÙ„ Ø°Ùˆ Ø£ÙˆÙ„ÙˆÙŠØ© Ù„Ù„Ø¯Ø¹Ù…"
+            "full_control": "تحكم كامل بالمنصة",
+            "analytics": "تحليلات وإحصائيات فورية",
+            "security": "مصادقة آمنة",
+            "support": "وصول ذو أولوية للدعم"
         }
     },
     "Notifications": {
-        "title": "Ø¥Ø±Ø³Ø§Ù„ Ø¥Ø´Ø¹Ø§Ø±Ø§Øª",
-        "subtitle": "Ø¥Ø±Ø³Ø§Ù„ Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ø¥Ù„Ù‰ Ù…Ø§Ù„ÙƒÙŠ Ø§Ù„Ù‚Ø§Ø¹Ø§Øª",
+        "title": "إرسال إشعارات",
+        "subtitle": "إرسال إشعارات إلى مالكي القاعات",
         "fields": {
-            "title": "Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±",
-            "message": "Ø§Ù„Ø±Ø³Ø§Ù„Ø©",
-            "type": "Ù†ÙˆØ¹ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±",
-            "recipients": "Ø§Ù„Ù…Ø³ØªÙ„Ù…ÙˆÙ†",
-            "user_id": "Ù…Ø¹Ø±Ù Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…"
+            "title": "عنوان الإشعار",
+            "message": "الرسالة",
+            "type": "نوع الإشعار",
+            "recipients": "المستلمون",
+            "user_id": "معرف المستخدم"
         },
         "placeholders": {
-            "title": "Ø£Ø¯Ø®Ù„ Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±...",
-            "message": "Ø£Ø¯Ø®Ù„ Ø±Ø³Ø§Ù„ØªÙƒ...",
-            "user_id": "Ø£Ø¯Ø®Ù„ Ù…Ø¹Ø±Ù Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… UUID..."
+            "title": "أدخل عنوان الإشعار...",
+            "message": "أدخل رسالتك...",
+            "user_id": "أدخل معرف المستخدم UUID..."
         },
-        "sending": "Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...",
-        "send": "Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±"
+        "sending": "جاري الإرسال...",
+        "send": "إرسال الإشعار"
     },
     "Common": {
-        "loading": "Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù…ÙŠÙ„...",
-        "error": "Ø®Ø·Ø£",
-        "success": "Ù†Ø¬Ø§Ø­",
-        "save": "Ø­ÙØ¸",
-        "cancel": "Ø¥Ù„ØºØ§Ø¡",
-        "delete": "Ø­Ø°Ù",
-        "edit": "ØªØ¹Ø¯ÙŠÙ„",
-        "view": "Ø¹Ø±Ø¶",
-        "close": "Ø¥ØºÙ„Ø§Ù‚",
-        "confirm": "ØªØ£ÙƒÙŠØ¯",
-        "back": "Ø±Ø¬ÙˆØ¹",
-        "next": "Ø§Ù„ØªØ§Ù„ÙŠ",
-        "search": "Ø¨Ø­Ø«",
-        "filter": "ØªØµÙÙŠØ©",
-        "sort": "ØªØ±ØªÙŠØ¨",
-        "all": "Ø§Ù„ÙƒÙ„",
-        "none": "Ù„Ø§ Ø´ÙŠØ¡",
-        "yes": "Ù†Ø¹Ù…",
-        "no": "Ù„Ø§"
+        "loading": "جاري التحميل...",
+        "error": "خطأ",
+        "success": "نجاح",
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "view": "عرض",
+        "close": "إغلاق",
+        "confirm": "تأكيد",
+        "back": "رجوع",
+        "next": "التالي",
+        "search": "بحث",
+        "filter": "تصفية",
+        "sort": "ترتيب",
+        "all": "الكل",
+        "none": "لا شيء",
+        "yes": "نعم",
+        "no": "لا"
     }
 }

@@ -30,7 +30,7 @@ const redirectWithCookies = (
 export async function GET(request: NextRequest) {
     const requestUrl = new URL(request.url);
     const localeParam = requestUrl.searchParams.get('locale');
-    const locale = localeParam && SUPPORTED_LOCALES.includes(localeParam) ? localeParam : 'en';
+    const locale = localeParam && SUPPORTED_LOCALES.includes(localeParam) ? localeParam : 'fr';
     const redirectTo = normalizeRedirectPath(requestUrl.searchParams.get('redirectTo'));
     const origin = getRequestOrigin(request);
 
