@@ -9,16 +9,18 @@ const normalizeUrlOrigin = (value: string) => {
 };
 
 export const getRequestOrigin = (request: NextRequest) => {
-    const explicitSiteUrl = normalizeUrlOrigin(process.env.NEXT_PUBLIC_SITE_URL || '');
-    if (explicitSiteUrl) {
-        return explicitSiteUrl;
-    }
-
     const forwardedHost = request.headers.get('x-forwarded-host');
     const forwardedProto = request.headers.get('x-forwarded-proto') || 'https';
     if (forwardedHost) {
         return `${forwardedProto}://${forwardedHost}`;
     }
 
-    return new URL(request.url).origin;
+    const requestOrigin = new URL(request.url).origin;
+    const explicitSiteUrl = normalizeUrlOrigin(process.env.NEXT_PUBLIC_SITE_URL || '');
+
+    if (explicitSiteUrl && explicitSiteUrl !== requestOrigin) {
+        return requestOrigin;
+    }
+
+    return explicitSiteUrl || requestOrigin;
 };
